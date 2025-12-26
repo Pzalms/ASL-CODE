@@ -1,1 +1,0 @@
-# ASL Recognition Source Package
