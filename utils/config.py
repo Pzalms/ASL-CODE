@@ -3,26 +3,27 @@ Configuration for ASL Finger Spelling Recognition System
 """
 
 from pathlib import Path
+from utils.features import TOTAL_FEATURES
 
 # Project paths
 PROJECT_ROOT = Path(__file__).parent.parent
-MODEL_PATH = PROJECT_ROOT / "models" / "asl_landmark_model.keras"
+MODEL_PATH = PROJECT_ROOT / "models" / "asl_model.pickle"
 COLLECTED_DATA_DIR = PROJECT_ROOT / "collected_data"
 
 # Model configuration
-NUM_CLASSES = 29
-FEATURE_DIM = 73  # 21 landmarks * 3 coords + 10 angles
+NUM_CLASSES = 28  # A-Z + del + space (no 'nothing' — handled by hand detection)
+FEATURE_DIM = TOTAL_FEATURES  # 80
 
 # Class labels
 CLASS_LABELS = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    'del', 'nothing', 'space'
+    'del', 'space',
 ]
 
 # Recognition settings
-CONFIDENCE_THRESHOLD = 0.70
-STABILITY_FRAMES = 4  # Frames to hold for letter confirmation
+CONFIDENCE_THRESHOLD = 0.65
+STABILITY_FRAMES = 5
 
 # UI configuration
 PAGE_TITLE = "ASL Finger Spelling"
